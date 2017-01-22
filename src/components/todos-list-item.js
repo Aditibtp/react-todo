@@ -27,7 +27,7 @@ export default class TodosListItem extends React.Component {
       return(
         <td>
           <form onSubmit = {this.onSaveClick.bind(this)}>
-            <input type='text' defaultValue = {task} ref = "editInput" />
+            <input type='text' defaultValue = {task} ref = {(input) => {this.editInput = input}} />
           </form>
         </td>
       );
@@ -57,7 +57,7 @@ export default class TodosListItem extends React.Component {
   onSaveClick(e){
     e.preventDefault();
     const oldTask = this.props.task;
-    const newTask = this.refs.editInput.value;
+    const newTask = this.editInput.value;
     this.props.saveTask(newTask, oldTask);
     this.setState({isEditing: false});
   }

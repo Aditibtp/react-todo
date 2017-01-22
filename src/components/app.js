@@ -42,9 +42,13 @@ export default class App extends React.Component {
 	}
 
 	saveTask(newTask, oldTask){
-		const foundTodo = _.find(this.state.todos, todo => todo.task === oldTask);
-		foundTodo.task = newTask;
-		console.log(this.state.todos);
+		const foundTodo = {};
+		for(let i = 0; i < this.state.todos.length; i++){
+			let todo = this.state.todos[i];
+			if(todo.task === oldTask){
+				todo.task = newTask;
+			}
+		}
 		this.setState({ todos: this.state.todos});
 	}
 

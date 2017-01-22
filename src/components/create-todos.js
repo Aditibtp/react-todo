@@ -19,7 +19,7 @@ export default class CreateTodo extends React.Component {
 
   handleCreate(e){
     e.preventDefault();
-    const createInput = this.refs.createInput;
+    const createInput = this.createInput;
     const task = createInput.value;
     const validateInput = this.validateInput(task);
     if(validateInput){
@@ -28,7 +28,7 @@ export default class CreateTodo extends React.Component {
     }
     this.setState({ error:null});
     this.props.createTask(task);
-    this.refs.createInput.value  = "";
+    this.createInput.value  = "";
   }
 
   validateInput(task){
@@ -44,7 +44,7 @@ export default class CreateTodo extends React.Component {
 	render(){
 		return (
         <form onSubmit = {this.handleCreate.bind(this)}>
-            <input placeholder = "What needs to be done???" ref="createInput"/>
+            <input placeholder = "What needs to be done???" ref={(input) => { this.createInput = input; }} />
             <button> Create one </button>
             {this.renderError()}
         </form>
